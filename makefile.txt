@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -std=c++0x 
+CXXFLAGS += -Wall 
+CXXFLAGS += -pedantic-errors
+CXXFLAGS += -g
+LDFLAGS = -lboost_date_time
+
+OBJS = pokemonstadium.o battlearena.o bonus.o legendary.o pokedex.o pokemon.o pokemontrainer.o
+
+SRCS = pokemonstadium.cpp battlearena.cpp bonus.cpp legendary.cpp pokedex.cpp pokemon.cpp pokemontrainer.cpp
+
+HEADERS = battlearena.h bonus.h legendary.h pokedex.h pokemon.h pokemontrainer.h
+
+pokemonstadium: ${OBJS} ${HEADERS}
+	${CXX} ${LDFLAGS} ${OBJS} -o pokemonstadium
+
+${OBJS}: ${SRCS}
+	${CXX} ${CXXFLAGS} -c $(@:.o=.cpp)
